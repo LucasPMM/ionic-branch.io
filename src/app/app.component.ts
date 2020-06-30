@@ -30,6 +30,7 @@ export class AppComponent {
   private shareContent() {
     // CREATING DEEP LINKS
     const properties = {
+      canonicalUrl: "https://test123321.app.link/content?contentId=JeLYgUYWJ7",
       contentDescription: "Descrição do link",
       canonicalIdentifier: "content/123",
       contentImageUrl:
@@ -102,6 +103,13 @@ export class AppComponent {
         data["$canonical_identifier"].includes("content")
       ) {
         const parts = data["$canonical_identifier"].split("/");
+        const contentId = parts[parts.length - 1];
+        alert(contentId);
+      } else if (
+        data["~referring_link"] &&
+        String(data["~referring_link"]).includes("contentId")
+      ) {
+        const parts = data["~referring_link"].split("=");
         const contentId = parts[parts.length - 1];
         alert(contentId);
       }
